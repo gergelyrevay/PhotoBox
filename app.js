@@ -6,6 +6,8 @@
 var express = require('express')
   , routes = require('./routes');
 
+var PhotoStore = require('./PhotoStore_simple').PhotoStore;
+
 var app = module.exports = express.createServer();
 
 // Configuration
@@ -30,9 +32,17 @@ app.configure('production', function(){
   app.use(express.errorHandler());
 });
 
+var photoStore = new PhotoStore();
 // Routes
 
-app.get('/', routes.index);
+app.get('/', routes.view);
+app.get('/upload', routes.upload);
+//app.post('/upload', routes.saveFile);
+app.post('/upload', function(req, res){
+  photoStore.save(req, function(err){
+    res.redirect('/');
+  });
+});
 
 app.listen(3000, function(){
   console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
