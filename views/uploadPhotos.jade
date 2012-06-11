@@ -1,0 +1,15 @@
+include includes/menu
+div.innerFrame
+  form( action="/upload", enctype="multipart/form-data", method="post" )
+    div
+      span.upload File:
+      input(type="file", name="file", id="fileInput")
+    div
+      span.upload Author:
+      input(type="text", name="author", id="authorInput")
+    div
+      span.upload Description:
+      textarea(name="body", id="descriptionInput")
+    div
+      input(type="submit", value="upload")
+
