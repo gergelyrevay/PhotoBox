@@ -1,22 +1,41 @@
-PhotoStore = function(){
-    console.log("PhotoStore()");
-};
+var fs = require("fs");
+
+function PhotoStore(){
+  this.uploadDir = "./public/uploads";
+  this.photoList = [];
+  this.indexOfCurrentlyShownPhoto = 0;
+
+  console.log("PhotoStore()");
+  this.refreshPhotoList();
+}
 
 PhotoStore.prototype.save = function(req, callback){
-    console.log("PhotoStore.save()");
-    callback(null);
+  console.log("PhotoStore.save()");
+  this.refreshPhotoList();
+  callback(null);
 };
 
-PhotoStore.getAll = function(callback){
+PhotoStore.prototype.refreshPhotoList = function(){
+  this.photoList = fs.readdirSync(this.uploadDir);
+  console.log(this.photoList);
 };
 
-PhotoStore.getById = function(id, callback){
+PhotoStore.prototype.getPhotoList = function(){
+  return this.photoList;
 };
 
-PhotoStore.deleteAll = function(callback){
-};
+PhotoStore.prototype.getCurrentPhoto = function(){
+  return this.photoList[this.indexOfCurrentlyShownPhoto];
+}
 
-PhotoStore.deleteById = function(callback){
-};
+PhotoStore.prototype.getNextPhoto = function(){
+  this.indexOfCurrentlyShownPhoto += 1;
+  return this.photoList[this.indexOfCurrentlyShownPhoto];
+}
+
+PhotoStore.prototype.getPrevPhoto = function(){
+  this.indexOfCurrentlyShownPhoto -= 1;
+  return this.photoList[this.indexOfCurrentlyShownPhoto];
+}
 
 exports.PhotoStore = PhotoStore;
