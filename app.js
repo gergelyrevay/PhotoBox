@@ -36,13 +36,26 @@ var photoStore = new PhotoStore();
 // Routes
 
 app.get('/', routes.view);
-app.get('/upload', routes.upload);
-//app.post('/upload', routes.saveFile);
+app.get('/upload', function(req, res){
+  var currentPhoto = photoStore.getCurrentPhoto();
+  res.render('viewPhotos', {title: 'View', photo: currentPhoto})
+});
+
+
+//uploading photo
 app.post('/upload', function(req, res){
-  photoStore.save(req, function(err){
+    photoStore.save(req, function(err){
     res.redirect('/');
   });
 });
+
+//getting next photo
+app.get('/nextPhoto', function(req, res){
+  var nextPhoto = photoStore.getNextPhoto();
+  res.render('viewPhotos', {title: 'View', photo: nextPhoto})
+});
+//getting prev photo
+
 
 app.listen(3000, function(){
   console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
