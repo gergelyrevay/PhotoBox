@@ -1,6 +1,8 @@
 include includes/menu
 div.frame
-  div#prevButton &lt;
   div#centralPhoto
-    img(src="/images/beamer_test.jpg")
-  div#nextbutton &gt;
+    img(src="/uploads/"+photo)
+  div#prevButton 
+    a(href="/prevPhoto") &lt;
+  div#nextbutton
+    a(href="/nextPhoto") &gt;
