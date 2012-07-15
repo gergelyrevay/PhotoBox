@@ -1,0 +1,32 @@
+body {
+  position: relative;
+  text-align: center;
+  font: 14px Helvetica, Arial, sans-serif;
+}
+div.innerFrame {
+  margin: auto;
+}
+div.innerFrame textarea {
+  height: 180px;
+  width: 250px;
+}
+div.innerFrame input {
+  width: 250px;
+}
+div#prevButton,
+div#nextButton,
+div#centralPhoto {
+  display: inline;
+}
+span.upload {
+  text-align: left;
+  display: inline-block;
+  width: 100px;
+}
+div#menu span {
+  display: inline-block;
+  width: 100px;
+}
+a {
+  color: #00b7ff;
+}
