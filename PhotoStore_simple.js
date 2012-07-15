@@ -30,11 +30,15 @@ PhotoStore.prototype.getCurrentPhoto = function(){
 
 PhotoStore.prototype.getNextPhoto = function(){
   this.indexOfCurrentlyShownPhoto += 1;
+  this.indexOfCurrentlyShownPhoto = this.indexOfCurrentlyShownPhoto % this.photoList.length;
+  console.log("current index: "+this.indexOfCurrentlyShownPhoto);
   return this.photoList[this.indexOfCurrentlyShownPhoto];
 }
 
 PhotoStore.prototype.getPrevPhoto = function(){
   this.indexOfCurrentlyShownPhoto -= 1;
+  this.indexOfCurrentlyShownPhoto = ((this.indexOfCurrentlyShownPhoto % this.photoList.length) + this.photoList.length) % this.photoList.length;
+  console.log("current index: "+this.indexOfCurrentlyShownPhoto);
   return this.photoList[this.indexOfCurrentlyShownPhoto];
 }
 
