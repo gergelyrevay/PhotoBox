@@ -2,7 +2,9 @@ include includes/menu
 div.frame
   div#centralPhoto
     img(src="/uploads/"+photo)
-  div#prevButton 
-    a(href="/prevPhoto") &lt;
-  div#nextbutton
-    a(href="/nextPhoto") &gt;
+  div#navigation
+    span#prevButton 
+      a(href="/prevPhoto") &lt;
+    span &nbsp;&nbsp;
+    span#nextbutton
+      a(href="/nextPhoto") &gt;
