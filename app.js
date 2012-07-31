@@ -10,7 +10,9 @@ var PhotoStore = require('./PhotoStore_simple').PhotoStore;
 
 var app = module.exports = express.createServer();
 
-// Configuration
+/**
+* Configuration
+*/
 
 app.configure(function(){
   app.set('views', __dirname + '/views');
@@ -32,40 +34,23 @@ app.configure('production', function(){
   app.use(express.errorHandler());
 });
 
-var photoStore = new PhotoStore();
-// Routes
+/**
+* Init
+*/
+
+photoStore = module.exports = new PhotoStore();
+
+/**
+* Routes
+*/
 
 app.get('/', routes.view);
-app.get('/view', function(req, res){
-  var currentPhoto = photoStore.getCurrentPhoto();
-  res.render('viewPhotos', {title: 'View', photo: currentPhoto})
-});
+app.get('/view', routes.view);
+app.get('/upload', routes.showUploadPage); //uploading photo
+app.post('/upload', routes.uploadFile); //uploading photo
+app.get('/nextPhoto', routes.showNextPhoto); //getting next photo
+app.get('/prevPhoto', routes.showPrevPhoto);//getting prev photo
 
-//uploading photo
-app.get('/upload', function(req, res){
-  res.render('uploadPhotos', {title: 'Upload'})
-});
-
-
-
-//uploading photo
-app.post('/upload', function(req, res){
-    photoStore.save(req, function(err){
-    res.redirect('/');
-  });
-});
-
-//getting next photo
-app.get('/nextPhoto', function(req, res){
-  var nextPhoto = photoStore.getNextPhoto();
-  res.render('viewPhotos', {title: 'View', photo: nextPhoto})
-});
-
-//getting prev photo
-app.get('/prevPhoto', function(req, res){
-  var prevPhoto = photoStore.getPrevPhoto();
-  res.render('viewPhotos', {title: 'View', photo: prevPhoto})
-});
 
 app.listen(3000, function(){
   console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
