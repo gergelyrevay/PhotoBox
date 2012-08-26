@@ -1,0 +1,11 @@
+form( action="/login", enctype="multipart/form-data", method="post" )
+  div
+    span User name:
+    input(type="text", name="userName", id="userName")
+  div
+    span Password:
+    input(type="password", name="password", id="password")
+  div
+    input(type="submit", name="login", value="Login")
+div
+  a(href="/register") Register
