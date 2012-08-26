@@ -8,6 +8,7 @@ var express = require('express')
   , restrict = require('./controller/auth').restrict;
 
 var PhotoStore = require('./PhotoStore_simple').PhotoStore;
+var UserDB = require('./model/UserDB').UserDB;
 
 var app = module.exports = express.createServer();
 
@@ -40,6 +41,7 @@ app.configure('production', function(){
 */
 
 photoStore = module.exports = new PhotoStore();
+users = module.exports = new UserDB();
 
 /**
 * Routes
