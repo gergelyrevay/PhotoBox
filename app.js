@@ -22,7 +22,7 @@ app.configure(function(){
   app.use(express.bodyParser({ keepExtensions: true, uploadDir: __dirname + "/public/uploads" }));
   app.use(express.methodOverride());
   app.use(express.cookieParser());
-  app.use(express.session({ secret: 'your secret here' }));
+  app.use(express.session({ secret: 'Titk0sF1ckos' }));
   app.use(require('stylus').middleware({ src: __dirname + '/public' }));
   app.use(app.router);
   app.use(express.static(__dirname + '/public'));
