@@ -8,7 +8,7 @@ exports.view = function(req, res){
 };
 
 exports.upload = function(req, res){
-  res.render('uploadaeePhotos', {title: 'View'})
+  res.render('uploadPhotos', {title: 'Upload'})
 };
 
 exports.showUploadPage = function(req, res){
