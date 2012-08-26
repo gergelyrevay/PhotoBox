@@ -4,7 +4,8 @@
  */
 
 var express = require('express')
-  , routes = require('./routes');
+  , routes = require('./routes')
+  , restrict = require('./controller/auth').restrict;
 
 var PhotoStore = require('./PhotoStore_simple').PhotoStore;
 
@@ -44,12 +45,16 @@ photoStore = module.exports = new PhotoStore();
 * Routes
 */
 
-app.get('/', routes.view);
-app.get('/view', routes.view);
-app.get('/upload', routes.showUploadPage); //uploading photo
-app.post('/upload', routes.uploadFile); //uploading photo
-app.get('/nextPhoto', routes.showNextPhoto); //getting next photo
-app.get('/prevPhoto', routes.showPrevPhoto);//getting prev photo
+app.get('/', restrict, routes.view);
+app.get('/view', restrict, routes.view);
+app.get('/upload', restrict, routes.showUploadPage); //uploading photo
+app.post('/upload', restrict, routes.uploadFile); //uploading photo
+app.get('/nextPhoto', restrict, routes.showNextPhoto); //getting next photo
+app.get('/prevPhoto', restrict, routes.showPrevPhoto);//getting prev photo
+app.get('/register', routes.showRegistration);
+app.post('/register', routes.registerUser);
+app.get('/login', routes.showLogin);
+app.post('/login', routes.authenticateUser);
 
 
 app.listen(3000, function(){
