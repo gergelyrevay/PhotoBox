@@ -1,0 +1,13 @@
+form( action="/register", enctype="multipart/form-data", method="post" )
+  div
+    span: errorMessage
+  div
+    span User name:
+    input(type="text", name="userName", id="userName")
+  div
+    span Password:
+    input(type="password", name="password", id="password")
+  div
+    input(type="submit", name="Register", value="Register")
+div
+  a(href="/login") Login
